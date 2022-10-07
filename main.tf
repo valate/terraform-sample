@@ -2,12 +2,12 @@ provider "aws" {
   region = var.region
 }
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "linux" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-server-20.04-amd64-server-*"]
+    values = ["linux/images/hvm-ssd/-kernel-5.10-amd64-server-*"]
   }
 
   filter {
@@ -18,8 +18,8 @@ data "aws_ami" "ubuntu" {
   owners = ["167357161503"] # Canonical
 }
 
-resource "aws_instance" "ubuntu" {
-  ami           = data.aws_ami.ubuntu.id
+resource "aws_instance" "linux" {
+  ami           = data.aws_ami.linux.id
   instance_type = var.instance_type
 
   tags = {
