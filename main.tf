@@ -4,10 +4,12 @@ provider "aws" {
 
 data "aws_ami" "ubuntu" {
   most_recent = true
+  name_regex       = "^myami-\\d{3}"
+  owners           = ["self"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["myami-*"]
   }
 
   filter {
@@ -15,7 +17,7 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  
 }
 
 resource "aws_instance" "ubuntu" {
