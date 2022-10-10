@@ -4,10 +4,12 @@ provider "aws" {
 
 data "aws_ami" "ubuntu" {
   most_recent = true
+  name_regex       = "^myami-\\d{3}"
+  owners           = ["self"]
 
   filter {
     name   = "name"
-    values = ["CIS Ubuntu Linux 18.04 LTS Benchmark v1.0.0.* - Level 1-*"]
+    values = ["myami-*"]
   }
 
   filter {
@@ -15,12 +17,12 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners =["679593333241"]
+  
 }
 
 resource "aws_instance" "ubuntu" {
-  ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.micro"
+  ami           = data.aws_ami.ubuntu
+  instance_type = var.instance_type
 
   tags = {
     Name = var.instance_name
