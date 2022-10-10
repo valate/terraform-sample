@@ -4,8 +4,7 @@ provider "aws" {
 
 data "aws_ami" "ubuntu" {
   most_recent = true
-  name_regex       = "^myami-\\d{3}"
-  owners           = ["self"]
+  owners = ["self"]
 
   filter {
     name   = "name"
@@ -16,7 +15,6 @@ data "aws_ami" "ubuntu" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
   
 }
 
