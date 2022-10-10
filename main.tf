@@ -4,11 +4,11 @@ provider "aws" {
 
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners = ["self"]
+  owners = ["Canonical"]
 
   filter {
     name   = "name"
-    values = ["myami-*"]
+    values = ["ami-0d43b5bf95246b21e"]
   }
 
   filter {
