@@ -4,14 +4,14 @@ terraform {
     organization = "valete-org"
 
     workspaces {
-      name = "terraform-sample"
+      name = "learn-terraform-cloud"
     }
   }
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 3.28.0"
     }
   }
 
